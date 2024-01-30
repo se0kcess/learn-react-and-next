@@ -10,17 +10,14 @@ export default function TodoList ({ todos  }) {
     setSearch(e.target.value);
   }
 
-  const filterTodos = () =>{
+  const filterTodos = () => {
     if(search === ""){
       return todos;
     }
-    
-    return todos.filter((todo) => 
-      todo.content
-      .toLowerCase()
-      .includes(search.toLowerCase())
+    return todos.filter(todo => 
+      todo.content.toLowerCase().includes(search.toLowerCase())
       );
-  };
+  }
 
   return (
   <div className='TodoList'>
@@ -31,7 +28,7 @@ export default function TodoList ({ todos  }) {
     placeholder='검색어를 입력하세요' 
     />
     <div className='todos_wrapper'>
-      {filterTodos.map((todo) => (
+      {filterTodos().map((todo) => (
         <TodoItem key={todo.id} {...todo} />
       ))}
     </div>
