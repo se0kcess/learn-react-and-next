@@ -2,7 +2,7 @@ import TodoItem from './TodoItem';
 import "./TodoList.css";
 import { useState } from 'react';
 
-export default function TodoList ({ todos, onUpdate }) {
+export default function TodoList ({ todos, onUpdate, onDelete }) {
 
   const [search, setSearch] = useState("");
 
@@ -29,7 +29,11 @@ export default function TodoList ({ todos, onUpdate }) {
     />
     <div className='todos_wrapper'>
       {filterTodos().map((todo) => (
-        <TodoItem key={todo.id} {...todo} onUpdate={onUpdate}/>
+        <TodoItem 
+        key={todo.id} {...todo} 
+        onUpdate={onUpdate}
+        onDelete={onDelete}
+        />
       ))}
     </div>
   </div>
