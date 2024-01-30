@@ -6,6 +6,7 @@ import Header from './components/Header'
 import TodoEditor from './components/TodoEditor'
 import TodoList from './components/TodoList'
 
+
 const mockData = [
   {
     id : 0,
@@ -49,7 +50,7 @@ function App() {
     <div className="App">
       <Header />
       <TodoEditor onCreate={onCreate}/>
-      <TodoList />
+      <TodoList todos={todos} />
     </div>
   )
 }
