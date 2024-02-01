@@ -11,7 +11,7 @@ const mockData = [
   {
     id : 0,
     isDone : true,
-    content : "React 공부",
+    content : "공부 하기",
     createdDate: new Date().getTime(),
   },
   {
@@ -29,10 +29,10 @@ const mockData = [
 ]
 
 function App() {
-
+  
   const [todos, setTodos] = useState(mockData)
   const idRef = useRef(3)
-
+  
   const onCreate = (content) => {
     const newTodo = {
       id : idRef.current++,
@@ -40,27 +40,34 @@ function App() {
       content,
       createdDate : new Date().getTime()
     }
-
+    
     setTodos(
       [newTodo, ...todos]
     )
   }
+    const onUpdate = (targetId) => {
+      setTodos(
+        todos.map((todo)=> 
+        todo.id===targetId 
+        ? {...todo, isDone : !todo.isDone} 
+        : todo
+        )
+        )
+      }
+      
+      const onDelete = (targetId) => {
+        setTodos(
+          todos.filter((todo) => todo.id !== targetId)
+          )
+        }
+        
+        
 
-  const onUpdate = (targetId)=>{
-    setTodos(
-      todos.map((todo)=> 
-      todo.id===targetId 
-      ? {...todo, isDone : !todo.isDone} 
-      : todo
-      )
-    )
-  }
-
-  return (
+        return (
     <div className="App">
       <Header />
       <TodoEditor onCreate={onCreate}/>
-      <TodoList todos={todos} onUpdate={onUpdate} />
+      <TodoList todos={todos} onUpdate={onUpdate} onDelete={onDelete} />
     </div>
   )
 }
