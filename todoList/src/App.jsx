@@ -1,5 +1,5 @@
 
-import { useReducer, useRef } from 'react'
+import { useReducer, useRef, useCallback } from 'react'
 import { useState } from 'react'
 import './App.css'
 import Header from './components/Header'
@@ -72,11 +72,12 @@ function App() {
     //   [newTodo, ...todos]
     // )
   }
-    const onUpdate = (targetId) => {
+    const onUpdate = useCallback ((targetId) => {
       dispatch({
         type : "UPDATE",
         data : targetId,
-      })
+      });
+    },[])
       // setTodos(
       //   todos.map((todo)=> 
       //   todo.id===targetId 
@@ -84,17 +85,17 @@ function App() {
       //   : todo
       //   )
       //   )
-      }
       
-      const onDelete = (targetId) => {
+      const onDelete = useCallback ((targetId) => {
         dispatch({
           type : "UPDATE",
           data : targetId,
         })
+      },[])
         // setTodos(
         //   todos.filter((todo) => todo.id !== targetId)
         //   )
-        }
+        
         
         
 
