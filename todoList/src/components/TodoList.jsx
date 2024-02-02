@@ -1,8 +1,11 @@
 import TodoItem from './TodoItem';
 import "./TodoList.css";
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useContext } from 'react';
+import { TodoStateContext } from '../TodoContext';
 
-export default function TodoList ({ todos, onUpdate, onDelete }) {
+export default function TodoList () {
+
+  const todos = useContext(TodoStateContext)
 
   const [search, setSearch] = useState("");
 
@@ -48,8 +51,6 @@ export default function TodoList ({ todos, onUpdate, onDelete }) {
       {filterTodos().map((todo) => (
         <TodoItem 
         key={todo.id} {...todo} 
-        onUpdate={onUpdate}
-        onDelete={onDelete}
         />
       ))}
     </div>
