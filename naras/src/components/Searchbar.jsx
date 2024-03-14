@@ -1,12 +1,17 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import style from './Searchbar.module.css';
 
-export default function Searchbar() {
+export default function Searchbar({q}) {
 
   const [search, setSearch] = useState("");
   const nav = useNavigate();
-  
+
+  useEffect(() => {
+    setSearch(q);
+  },[q]);
+
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
   };

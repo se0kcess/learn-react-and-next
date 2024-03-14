@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom'
 import { fetchSearchResults } from '../api';
+import SearchBar from './../components/Searchbar'
+import CountryList from './../components/CountryList'
+import style from "./Search.module.css";
 
 export default function Search(){
 
@@ -18,5 +21,13 @@ export default function Search(){
       setInitData();
     },[q]);
 
-  return <div>Search {searchParams.get("q")}</div>
+  return(
+  <div className={style.container}>
+    <SearchBar q={q}/>
+    <div>
+      <b>{q}</b> 검색 결과
+    </div>
+    <CountryList countries={countries} />
+  </div>
+  );
 }
